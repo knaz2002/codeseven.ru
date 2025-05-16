@@ -1,5 +1,28 @@
 "use strict";
 
+const mainLoader = document.querySelector('.main-loader');
+
+function startMainLoader() {
+  fetch('../session_loader.php?is_session_loader=1')
+    .then(response => response.json())
+    .then(data => {
+      let isLoader = data.isSession;
+
+      if(!isLoader) {
+        setTimeout(function() {
+          mainLoader.classList.add('is-hide');
+          document.body.classList.remove('lock');
+          fetch('../session_loader.php?session_loader_start=1');
+        }, 3500);
+          
+      } else {
+        mainLoader.classList.add('is-hide');
+      }
+    })
+}
+
+startMainLoader();
+
 const tl = gsap.timeline();
 // //----GSAP
 tl
@@ -98,7 +121,7 @@ tl
       opacity: 1
     },
     2.7
-  )  
+  ) 
   .fromTo(
     ".anim-title",
     {
@@ -111,7 +134,7 @@ tl
       opacity: 1,
       duration: 1,
     },
-    3.5
+    0
   )
   .fromTo(
     ".banner__text",
@@ -125,7 +148,7 @@ tl
       opacity: 1,
       duration: 1,
     },
-    3.5
+    0
   )
   .fromTo(
     ".anim-img",
@@ -139,7 +162,7 @@ tl
       opacity: 1,
       duration: 1,
     },
-    3.5
+    0
   )
   .fromTo(
     ".banner__btns",
@@ -152,8 +175,8 @@ tl
       opacity: 1,
       duration: 1,
     },
-    4
-  )  
+    .5
+  ) 
 
 //anim banner bg
 gsap.to(".banner__bg img", {
@@ -679,14 +702,7 @@ returnForm.addEventListener('click', function() {
 });
 
 //-----form Tariff
-document.addEventListener("DOMContentLoaded", function () {
-
-  const mainLoader = document.querySelector('.main-loader');
-
-  setTimeout(function() {
-    mainLoader.classList.add('is-hide');
-    document.body.classList.remove('lock');
-  }, 3500);
+document.addEventListener("DOMContentLoaded", function () {  
 
   const btnTariff = document.querySelectorAll(".modal-smm-item__btn");
   const modalTariffsSend = document.querySelector(".modal-send");

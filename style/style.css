@@ -1915,16 +1915,33 @@ section:last-child {
     background-image: url("../img/circle-mobile.webp");
     background-size: auto 100%;
     width: 100%;
+    height: 400px;
+  }
+}
+@media (max-width: 767px) {
+  .diagram-img {
+    height: 300px;
   }
 }
 .diagram-img__text {
   margin-bottom: 16px;
   color: rgba(20, 21, 23, 0.6);
 }
+@media (max-width: 991px) {
+  .diagram-img__text {
+    margin-bottom: 0;
+  }
+}
 .diagram-img__price {
   font-size: 52px;
   font-weight: 500;
   margin-bottom: 24px;
+}
+@media (max-width: 991px) {
+  .diagram-img__price {
+    font-size: 36px;
+    margin-bottom: 8px;
+  }
 }
 .form-fb__inner {
   text-align: center;
