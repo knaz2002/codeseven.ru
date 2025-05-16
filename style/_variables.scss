@@ -1,0 +1,15 @@
+:root {
+  --primary: 254, 79, 24;
+  // --primary: 10, 138, 240;
+  --dark: #141517;
+  --body: #eeeeee;
+  --color_text: #141517;
+  --light: #fff;
+  --error_color: 237, 34, 15;
+  --ff: "Manrope";
+  --liner: linear-gradient(
+    122.61deg,
+    rgba(var(--primary), 0.6) 0.37%,
+    rgb(var(--primary)) 99.63%
+  );
+}
