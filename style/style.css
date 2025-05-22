@@ -1003,14 +1003,33 @@ section:last-child {
 .mix__inner {
   background-color: rgb(20, 21, 23);
   border-radius: 16px;
-  padding: 24px;
+  padding: 64px 24px 24px;
+}
+@media (max-width: 767px) {
+  .mix__inner {
+    padding: 40px 16px 16px;
+  }
+}
+.mix__label {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.mix__label span {
+  display: inline-flex;
+  padding: 8px 16px;
+  border-radius: 24px;
+  background-color: rgba(238, 238, 238, 0.2);
+  color: #eee;
+  font-size: 14px;
+  font-family: var(--ff);
 }
 .mix__title.title {
   color: #fff;
   text-align: center;
   max-width: 50%;
   display: block;
-  margin: 110px auto 60px;
+  margin: 0 auto 40px;
 }
 @media (max-width: 1400px) {
   .mix__title.title {
@@ -1091,20 +1110,69 @@ section:last-child {
   padding: 8px 16px;
   border-radius: 24px;
 }
-@media (any-hover: hover) {
-  .mix-item:hover img {
-    transform: scale(1.2);
-  }
-}
 .mix-item__descr {
   margin: 0 auto 0;
   background-color: rgb(20, 21, 23);
 }
+.mix-item__name {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.24);
+}
+@media (max-width: 767px) {
+  .mix-item__name {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.mix-item__name--label {
+  display: inline-flex;
+  height: 35px;
+  line-height: 35px;
+  padding-right: 16px;
+  padding-left: 16px;
+  border-radius: 24px;
+  background-color: rgba(238, 238, 238, 0.2);
+  color: #eee;
+  font-size: 14px;
+  font-family: var(--ff);
+}
+@media (max-width: 767px) {
+  .mix-item__name--label {
+    order: 0;
+  }
+}
+@media (max-width: 767px) {
+  .mix-item__name div {
+    order: 1;
+  }
+}
 .mix-item__text {
+  margin-top: 24px;
   font-size: 16px;
+  line-height: 18px;
   font-weight: 400;
   margin-bottom: 16px;
-  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.mix-item__text span {
+  flex: 0 0 48px;
+  max-width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 767px) {
+  .mix-item__text {
+    font-size: 14px;
+    line-height: 16px;
+  }
 }
 .mix-item__link {
   color: rgb(var(--primary));
@@ -1701,6 +1769,7 @@ section:last-child {
   font-family: var(--ff);
   font-size: 14px;
   color: #eee;
+  cursor: pointer;
 }
 .card-flip__front-btn button.disabled, .card-flip__back-btn button.disabled {
   color: rgba(20, 21, 23, 0.3);

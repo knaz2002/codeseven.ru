@@ -397,7 +397,7 @@ modalFormClose.addEventListener("click", function () {
 });
 
 //-----modal smm
-const btnSmm = document.querySelector(".js-smm");
+// const btnSmm = document.querySelector(".js-smm");
 const modalSmm = document.querySelector(".modal-smm");
 const modalSmmClose = document.querySelector(".modal-smm__close");
 const modalSmmOverlay = document.querySelector(".modal-smm__overlay");
@@ -416,12 +416,12 @@ modalSmmOverlay.addEventListener('click', function() {
   modalSmm.classList.remove("modal-open");  
 });
 
-btnSmm.addEventListener("click", openModal);
+// btnSmm.addEventListener("click", openModal);
 modalSmmClose.addEventListener("click", closeModal);
 document.addEventListener("click", function (event) {
   if (!modalSmm.classList.contains("modal-open")) return;
   const isClickInsideModal = modalSmm.contains(event.target);
-  const isClickOnButton = btnSmm.contains(event.target);
+  // const isClickOnButton = btnSmm.contains(event.target);
 
   if (!isClickInsideModal && !isClickOnButton) {
     closeModal();
@@ -890,3 +890,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }  
 });
 
+const btnScrollToForm = document.querySelectorAll(".js-scroll-to-form");
+
+btnScrollToForm.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const form = document.querySelector(".js-job-form");
+    form.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+})
