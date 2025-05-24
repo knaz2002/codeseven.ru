@@ -2031,6 +2031,7 @@
   &__price {
     display: flex;
     align-items: flex-end;
+    justify-content: center;
     gap: 2px;
     flex-grow: 1;
     margin-top: auto;
@@ -2050,6 +2051,8 @@
     text-decoration: line-through;
     color: rgba(173, 173, 174, 1);
     letter-spacing: -1px;
+    margin-bottom: 3px;
+    margin-left: 6px;
   }
   &__buy {
     margin-top: auto;

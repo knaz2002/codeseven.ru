@@ -2496,6 +2496,7 @@ section:last-child {
 .tariff-item__price {
   display: flex;
   align-items: flex-end;
+  justify-content: center;
   gap: 2px;
   flex-grow: 1;
   margin-top: auto;
@@ -2517,6 +2518,8 @@ section:last-child {
   text-decoration: line-through;
   color: rgb(173, 173, 174);
   letter-spacing: -1px;
+  margin-bottom: 3px;
+  margin-left: 6px;
 }
 .tariff-item__buy {
   margin-top: auto;
