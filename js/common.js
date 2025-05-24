@@ -224,8 +224,8 @@ gsap.from(".offer-item", {
     start: "-50% center",
     end: "70% bottom",
     markers: false,
-    scrub: 3,
-    duration: 9,
+    scrub: 1.5,
+    duration: 6,
   },
   scale: 0.6,
   opacity: 0.15,
@@ -891,6 +891,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const btnScrollToForm = document.querySelectorAll(".js-scroll-to-form");
+const serviceItemsScroll = document.querySelectorAll(".card-flip__front--to-form");
+const serviceItemsLink = document.querySelectorAll(".card-flip__front--to-link");
 
 btnScrollToForm.forEach((btn) => {
   btn.addEventListener('click', (e) => {
@@ -901,4 +903,25 @@ btnScrollToForm.forEach((btn) => {
       block: "start",
     });
   });
-})
+});
+
+serviceItemsScroll.forEach((item) => {
+  item.addEventListener('click', () => {
+    if(document.body.clientWidth > 1024) return;
+    const form = document.querySelector(".js-job-form");
+    form.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+});
+
+serviceItemsLink.forEach((item) => {
+  item.addEventListener('click', () => {
+    console.log(document.body.clientWidth)
+    if(document.body.clientWidth > 1024) return;
+    const link = item.getAttribute("data-href");
+    window.location.href = link;
+  });
+});
+

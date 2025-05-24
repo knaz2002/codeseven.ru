@@ -519,7 +519,12 @@ section:last-child {
   background-color: #fff;
   border-radius: 26px;
   padding: 12px 24px;
-  gap: 10px;
+  gap: 24px;
+}
+@media (max-width: 1199px) {
+  .header-nav ul {
+    gap: 8px;
+  }
 }
 @media (max-width: 1023px) {
   .header-nav ul {
@@ -1762,6 +1767,11 @@ section:last-child {
     position: relative;
   }
 }
+@media (max-width: 1200px) {
+  .card-flip__front--to-form .card-flip-item__info-count > span:nth-child(2), .card-flip__back--to-form .card-flip-item__info-count > span:nth-child(2) {
+    display: none;
+  }
+}
 .card-flip__front-btn button, .card-flip__back-btn button {
   background-color: rgba(var(--primary));
   padding: 8px 16px;
@@ -1832,6 +1842,7 @@ section:last-child {
   background-position: center;
   width: 150px;
   height: 150px;
+  pointer-events: none-;
 }
 .card-flip-item__side {
   display: flex;
@@ -1840,6 +1851,11 @@ section:last-child {
   justify-content: space-between;
   align-items: flex-start;
   padding: 32px 24px;
+}
+@media (max-width: 767px) {
+  .card-flip-item__side {
+    padding: 24px 16px;
+  }
 }
 .card-flip-item__title {
   width: 100%;
@@ -1854,8 +1870,44 @@ section:last-child {
     font-size: 24px;
   }
 }
+@media (max-width: 767px) {
+  .card-flip-item__title {
+    font-size: 20px;
+    line-height: 20px;
+  }
+}
 .card-flip-item__info {
   width: 100%;
+}
+@media (max-width: 1200px) {
+  .card-flip-item__info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    row-gap: 34px;
+    justify-content: space-between;
+    padding-top: 16px;
+    font-size: 16px;
+    line-height: 18px;
+    font-family: var(--ff);
+    color: rgba(20, 21, 23, 0.6);
+    font-weight: 400;
+  }
+}
+@media (max-width: 1200px) and (max-width: 767px) {
+  .card-flip-item__info {
+    font-size: 14px;
+    line-height: 16px;
+    row-gap: 24px;
+  }
+}
+.card-flip-item__info--mb {
+  display: none;
+}
+@media (max-width: 1200px) {
+  .card-flip-item__info--mb {
+    display: block;
+  }
 }
 .card-flip-item__info-text {
   color: rgba(20, 21, 23, 0.6);
@@ -1881,11 +1933,6 @@ section:last-child {
   justify-content: center;
   border-radius: 50%;
   background-color: rgba(var(--primary), 0.1);
-}
-@media (max-width: 1200px) {
-  .card-flip-item__info-count span:last-child {
-    display: none;
-  }
 }
 
 .offer-flip__head {
@@ -2730,12 +2777,24 @@ section:last-child {
   color: rgb(var(--primary));
   font-weight: 500;
 }
-.footer-contacts__mail {
+@media (max-width: 575px) {
+  .footer-contacts__phone {
+    display: block;
+    text-align: center;
+  }
+}
+.footer-contacts__email {
   font-family: var(--ff);
   font-size: 20px;
   line-height: 22px;
   color: rgba(20, 21, 23, 0.6);
   font-weight: 500;
+}
+@media (max-width: 575px) {
+  .footer-contacts__email {
+    display: block;
+    text-align: center;
+  }
 }
 .footer-contacts__social {
   display: flex;
@@ -2753,6 +2812,7 @@ section:last-child {
   padding: 11px 24px;
   width: 100%;
   justify-content: center;
+  font-size: 14px;
 }
 @media (max-width: 575px) {
   .footer-contacts__social a {
