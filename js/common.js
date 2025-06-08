@@ -925,3 +925,10 @@ serviceItemsLink.forEach((item) => {
   });
 });
 
+const accordionBtns = document.querySelectorAll(".list-numb__tgl");
+accordionBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    btn.classList.toggle("active");
+    btn.nextElementSibling.classList.toggle("active");
+  });
+})

@@ -1271,6 +1271,16 @@
   @media (max-width: 767px) {
     grid-template-columns: 1fr;
   }
+
+  &--outsourcing {
+    grid-template-columns: 1fr 1fr 1fr;
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+    }
+  }
   &__inner {
     width: 100%;
     height: 100%;
@@ -1451,6 +1461,11 @@
   &__info-text {
     color: rgba(20, 21, 23, 0.6);
   }
+  &--outsourcing {
+    .card-flip-item__info-text {
+      font-size: 15px;
+    }
+  }
   &__info-count {
     display: flex;
     align-items: center;
@@ -1567,16 +1582,21 @@
 //---------contact finish------------//
 .list-numb {
   counter-reset: num;
-  li {
+  
+  & > li {
     position: relative;
     padding-left: 78px;
     padding-bottom: 30px;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(20, 21, 23, 0.6);
     z-index: 10;
     p {
       &:first-child {
         font-size: 28px;
         font-weight: 500;
-        margin-bottom: 16px;
+        margin-bottom: 16px;     
+        padding-bottom: 0;
         @media (max-width: 1023px) {
           font-size: 24px;
         }
@@ -1584,10 +1604,33 @@
           font-size: 20px;
         }
       }
-      &:last-child {
-        font-size: 16px;
-        font-weight: 400;
-        color: rgba(20, 21, 23, 0.6);
+
+      b {
+        font-weight: 700;
+      }
+
+      &.list-numb__tgl {
+        display: flex;
+        justify-content: space-between; 
+        cursor: pointer;       
+
+        &.active {
+          span {
+            transform: rotate(180deg);
+          }
+        }
+
+        span {
+          flex: 0 0 50px;
+          height: 50px;
+          background-image: url('../img/arrow-down.svg');
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-size: 30px;
+          background-position: center center;
+          border-radius: 50%;
+          background-color: rgb(var(--primary));
+        }
       }
     }
     &:after {
@@ -1637,6 +1680,50 @@
       }
       &::after {
         content: none;
+      }
+    }
+
+    p {
+      padding-bottom: 12px;
+    }
+
+    ul li {
+      padding-bottom: 12px;
+      position: relative;
+      padding-left: 16px;
+      &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 12px;
+        height: 2px;
+        left: 0;
+        background-color: rgb(var(--primary));
+        top: 11px;
+      }
+    }
+  }
+  &__drop {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    height: 0;
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+      height: auto;
+    }
+
+    & > p:first-child {
+      font-size: 20px !important;
+      margin-bottom: 0 !important;
+      padding-bottom: 12px !important;
+      @media (max-width: 1023px) {
+        font-size: 18px !important;
+      }
+      @media (max-width: 767px) {
+        font-size: 16px !important;
       }
     }
   }
@@ -1911,7 +1998,18 @@
     @media (max-width: 767px) {
       grid-template-columns: 1fr;
     }
-  }
+
+    &--outsourcing {
+      grid-template-columns: repeat(3, 1fr);
+      @media (max-width: 1023px) {
+        grid-template-columns: 1fr 1fr;
+      }
+      @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }  
+  
   &__item {
     padding: 32px 24px;
     border-radius: 16px;
@@ -1969,6 +2067,16 @@
       grid-template-columns: 1fr;
       gap: 16px;
     }
+
+    &--outsourcing {
+      grid-template-columns: repeat(3, 1fr);
+      @media (max-width: 1200px) {
+        grid-template-columns: 1fr 1fr;
+      }
+      @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+      }
+    }
   }
 }
 .tariff-item {
@@ -1983,6 +2091,18 @@
     &:has(.tariff-item__choice) {
       @media (max-width: 1200px) {
         margin-top: 41px;
+      }
+    }
+  }
+  &__description {
+    padding-top: 16px;
+    text-align: center;
+    p {
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: rgba(20, 21, 23, 0.6);
+      b {
+        font-weight: 700;
       }
     }
   }
