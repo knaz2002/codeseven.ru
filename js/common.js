@@ -896,6 +896,7 @@ const serviceItemsLink = document.querySelectorAll(".card-flip__front--to-link")
 
 btnScrollToForm.forEach((btn) => {
   btn.addEventListener('click', (e) => {
+    console.log(e)
     e.preventDefault();
     const form = document.querySelector(".js-job-form");
     form.scrollIntoView({
