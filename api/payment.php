@@ -1,4 +1,42 @@
 <?php
+declare(strict_types=1);
+
+/**
+ * ============================================================
+ * ВРЕМЕННОЕ ОТКЛЮЧЕНИЕ ПЛАТЁЖНОГО ФУНКЦИОНАЛА
+ * ============================================================
+ *
+ * Платёжная система на текущей версии сайта не используется.
+ *
+ * Тарифы скрыты от посетителей, однако одного скрытия элементов
+ * интерфейса недостаточно: PHP-обработчик всё равно может быть
+ * вызван напрямую по HTTP.
+ *
+ * Поэтому платёжный API дополнительно отключён на серверной
+ * стороне через переменную окружения PAYMENT_ENABLED.
+ *
+ * Полноценный рефакторинг платёжной логики вынесен в технический
+ * долг проекта.
+ * ============================================================
+ */
+
+require_once __DIR__ . '/../bootstrap.php';
+
+header('Content-Type: application/json; charset=utf-8');
+
+if (env('PAYMENT_ENABLED', 'false') !== 'true') {
+    http_response_code(503);
+
+    echo json_encode(
+        [
+            'status' => 'error',
+            'msg' => 'Платёжный функционал временно недоступен.',
+        ],
+        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+    );
+
+    exit;
+}
 
 if($_REQUEST['package'] && $_REQUEST['price']) {   
 
@@ -56,8 +94,8 @@ if($_REQUEST['package'] && $_REQUEST['price']) {
     "Amount"      => $price*100,
     "Description" => 'Заказ с сайта CodeSeven, на услугу SMM, тариф: '.$trf,
     "OrderId"     => $orderId,
-    "TerminalKey" => '1742973723732',
-    "Password"    => 'P*IdENENC1sg5a$q',
+    "TerminalKey" => env_required('PAYMENT_TERMINAL_KEY'),
+    "Password"    => env_required('PAYMENT_PASSWORD'),
     "DATA" => [
       "Phone" => $phone,
       "Email" => $email
@@ -111,8 +149,8 @@ if($_REQUEST['package'] && $_REQUEST['price']) {
 } elseif ($_GET['paymentId']) {
 
   $dataStatus = [
-    "TerminalKey" => '1742973723732',
-    "Password"    => 'P*IdENENC1sg5a$q',
+    "TerminalKey" => env_required('PAYMENT_TERMINAL_KEY'),
+    "Password"    => env_required('PAYMENT_PASSWORD'),
     "PaymentId" => $_GET['paymentId']
   ];
 
@@ -181,8 +219,8 @@ function generate_QR($paymentId, $orderId, $mobileDevice) {
 
   // Формируем данные для генерации QR
   $dataQR = [
-    "TerminalKey" => '1742973723732',
-    "Password"    => 'P*IdENENC1sg5a$q',
+    "TerminalKey" => env_required('PAYMENT_TERMINAL_KEY'),
+    "Password"    => env_required('PAYMENT_PASSWORD'),
     "PaymentId" => $paymentId,
     "DataType" => $dataType
   ];
