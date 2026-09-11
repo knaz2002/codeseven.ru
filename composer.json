@@ -1,0 +1,10 @@
+{
+    "name": "knaz2002/codeseven.ru",
+    "description": "Официальный сайт веб-студии CodeSeven",
+    "type": "project",
+    "license": "Apache-2.0",
+    "require": {
+        "phpmailer/phpmailer": "^6.9",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
