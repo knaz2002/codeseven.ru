@@ -1,0 +1,83 @@
+<template>
+  <div class="partners" id="partners">
+    <Cards :cards="cardsPartners" wrapper-class="partners__cards-wrapper" />
+  </div>
+</template>
+
+<script>
+import Cards from "~/components/TheCards.vue";
+
+export default {
+  name: "ThePartners",
+  components: {
+    Cards,
+  },
+  data() {
+    return {
+      cardsPartners: [
+        {
+          id: 1,
+          img: "/img/partners/selectel.svg",
+          url: "https://selectel.ru/?ref_code=b8fa4d2dd8",
+        },
+        {
+          id: 2,
+          img: "/img/partners/tbank.svg",
+          url: "https://www.tbank.ru/kassa/?utm_source=partners_sme&utm_medium=prt.utl&utm_campaign=business.int_acquiring.7-3S940JHQ8&partnerId=7-3S940JHQ8&agentId=5-2W3CJXCWZ&agentSsoId=f44ce3bf-1cb8-4710-a891-254cc2cb266c",
+        },
+        {
+          id: 3,
+          img: "/img/partners/timeweb.svg",
+          url: "https://timeweb.cloud/?i=122675",
+        },
+      ],
+    };
+  },
+};
+</script>
+
+<style lang="scss">
+.partners {
+  width: 100%;
+  padding: 4rem 0;
+
+  &__cards-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    justify-content: space-around;
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+      max-width: 50%;
+      justify-content: center;
+      margin: 0 auto;
+    }
+    .card {
+      min-height: auto !important;
+      background-color: var(--bg);
+      padding: 9rem 3rem;
+      border-radius: var(--radius);
+      overflow: hidden;
+      @media (max-width: 767px) {
+        padding: 3rem;
+      }
+      &__item {
+        box-shadow: none !important;
+      }
+      &__wrapper {
+      }
+      &__img {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &__title {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+  .cards {
+  }
+}
+</style>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta name="color-scheme" content="light dark">
+    <script>
+      (function(){var s=localStorage.getItem('theme'),d=s==='dark'||(!s&&matchMedia('(prefers-color-scheme:dark)').matches);document.documentElement.classList.toggle('dark-mode',d);if(d)document.write('<style id="theme-critical">html,body{background-color:#414a4c!important;color:#fffff0!important}</style>');})();
+    </script>
+    <style>
+      html { background-color: #fffff0; }
+      html.dark-mode { background-color: #414a4c !important; }
+      html.dark-mode body,
+      body.dark-mode {
+        --glitch-color: #fffff0;
+        --light: #414a4c;
+        --grafit: #fffff0;
+        --text: #fffff0;
+        background-color: #414a4c !important;
+        color: #fffff0 !important;
+      }
+    </style>
+    {{ HEAD }}
+  </head>
+  <body>
+    <script>
+      (function () {
+        var dark = document.documentElement.classList.contains('dark-mode');
+        document.body.classList.toggle('dark-mode', dark);
+      })();
+    </script>
+    {{ APP }}
+  </body>
+</html>

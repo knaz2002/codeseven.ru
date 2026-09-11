@@ -1,0 +1,168 @@
+// 1. Сброс и базовые стили — оставляем как есть
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:focus,
+*:after,
+*:before {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  outline: none;
+}
+
+article,
+aside,
+footer,
+header,
+nav,
+section,
+canvas {
+  display: block;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+input,
+button {
+  outline: none;
+  border: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+html {
+  font-size: clamp(56.25%, 0.0208vw + 56.25%, 75%);
+
+  scroll-behavior: smooth;
+  @media (min-width: 1920px) {
+    font-size: 75%; // 16px * 0.75 = 12px → 1rem = 12px
+  }
+  @media (min-width: 2560px) {
+    font-size: 81.25%; // 13px → 1rem = 13px
+  }
+  @media (min-width: 3840px) {
+    font-size: 87.5%; // 14px → 1rem = 14px
+  }
+}
+
+// Альтернатива (если нужна поддержка старых браузеров без clamp):
+// html {
+//   font-size: 62.5%; // fallback: 10px
+//   @media (max-width: 480px) { font-size: 56.25%; } // 9px
+//   @media (min-width: 1920px) { font-size: 75%; } // 12px
+// }
+
+[class*="__container"] {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  // Плавный padding: от 1.5rem (15px) до 5rem (50px) по ширине
+  padding: 0 clamp(1.5rem, 4vw, 5rem);
+
+  // Или оставить ваши медиа-запросы — тоже нормально:
+  // @media (max-width: 1200px) { padding: 0 3rem; }
+  // @media (max-width: 767px) { padding: 0 1.5rem; }
+}
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  display: inline-block;
+  color: inherit;
+}
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+article,
+aside,
+footer,
+header,
+nav,
+section,
+canvas {
+  display: block;
+}
+input {
+  outline: none;
+  border: none;
+  background: none;
+}
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+}
+
+.svg-primary {
+  fill: rgba(var(--primary)) !important;
+}
+.svg-theme {
+  fill: var(--text);
+  path {
+    fill: var(--text);
+  }
+}
+.portfolio {
+  .cards {
+    &__container {
+      // padding-left: 0 !important;
+      // padding-right: 0 !important;
+    }
+  }
+}
+.title {
+  color: var(--text);
+}
+h1 {
+  &.title {
+  }
+}
+h2 {
+  &.title {
+    font-size: 4rem;
+    @media (max-width: 767px) {
+      font-size: 2.5rem;
+    }
+  }
+}
+.mt-5 {
+  margin-top: 5.5rem;
+}

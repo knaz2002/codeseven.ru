@@ -1,0 +1,791 @@
+.it-outsourcing-page {
+  margin-top: 10rem;
+}
+
+// HERO
+.it-outsourcing-hero {
+  &__row {
+    display: flex;
+    gap: 1.67rem;
+  }
+
+  &__content {
+    flex: 0 0 calc(100% - 520px);
+    max-width: calc(100% - 520px);
+
+    @media (max-width: 1359px) {
+      flex: 0 0 calc(100% - 420px);
+      max-width: calc(100% - 420px);
+    }
+
+    @media (max-width: 991px) {
+      flex: 0 0 calc(100% - 300px);
+      max-width: calc(100% - 300px);
+    }
+
+    @media (max-width: 767px) {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+
+  &__media {
+    flex: 0 0 520px;
+    max-width: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 1359px) {
+      flex: 0 0 420px;
+      max-width: 420px;
+    }
+
+    @media (max-width: 991px) {
+      flex: 0 0 300px;
+      max-width: 300px;
+    }
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+
+
+  &__title {
+    font-family: var(--ff);
+    font-family: 600;
+    font-size: 5.67rem;
+    color: #fff;
+    margin-bottom: 2rem;
+    
+    @media (max-width: 1359px) {
+      font-size: 4.33rem;
+    }
+
+    @media (max-width: 991px) {
+      font-size: 3.33rem;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__lead {
+    font-family: var(--ff);
+    font-size: 1.67rem;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: -2%;
+    opacity: 0.65;
+
+    @media (max-width: 767px) {
+      font-size: 16px;
+    }
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: .67rem;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    border: solid 2px #fff;
+    border-radius: 24px;
+    transition: .3s ease-in-out;
+    font-family: var(--ff);
+    font-size: 1.33rem;
+    color: #141517;
+    font-weight: 500;
+
+    svg {
+      margin-top: 0.1667rem;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: transparent;
+        color: #fff;
+        svg {
+          path {
+            fill: #fff;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 767px) {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 36px;
+    }
+  }
+
+  &__features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.33rem;
+    margin-top: 5.3333rem;
+
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 36px;
+    }
+  }
+}
+
+// FEATURES
+.it-outsourcing-hero-feature {
+  background-color: #fff;
+  box-shadow: 4px 4px 8px rgba(0,0,0,.42);
+  border-radius: 16px;
+  padding: 1.33rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__title {
+    font-family: var(--ff);
+    font-weight: 500;
+    font-size: 1.67rem;
+    color: #141517;
+  }
+
+  &__text {
+    font-family: var(--ff);
+    font-size: 1.33rem;
+    color: #141517;
+    font-weight: 400;
+    letter-spacing: -2%;
+    opacity: 0.65;
+  }
+}
+
+// SERVICES
+.it-outsourcing-services {
+  margin-top: 20rem;
+
+  @media (max-width: 1359px) {
+    margin-top: 16rem;
+  }
+
+  @media (max-width: 991px) {
+    margin-top: 12rem;
+  }
+
+  @media (max-width: 767px) {
+    margin-top: 6.8rem;
+  }
+
+  &__container {
+    max-width: 1272px;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5.33rem;
+    gap: 1.33rem;
+
+    @media (max-width: 991px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.33rem;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__title {
+    font-family: var(--ff);
+    font-weight: 500;
+    font-size: 3.67rem;
+    color: #FFFFF0;
+    white-space: nowrap;
+
+    @media (max-width: 1359px) {
+      font-size: 4.33rem;
+    }
+
+    @media (max-width: 991px) {
+      font-size: 3.33rem;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 24px;
+    }
+  }
+
+  &__intro {
+    max-width: 600px;
+    font-size: 1.67rem;
+    font-weight: 500;
+    letter-spacing: -2%;
+    color: #FFFFF0;
+
+    @media (max-width: 767px) {
+      font-size: 16px;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;    
+
+    @media (max-width: 991px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+}
+
+// SERVICE CARD
+.it-outsourcing-service-card {
+  background-color: #F7F7F8;
+  box-shadow: 4px 4px 8px rgba(0,0,0,.42);
+  border-radius: 20px;
+  padding: 2.6667rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__title {
+    font-family: var(--ff);
+    font-weight: 500;
+    font-size: 2.33rem;
+    color: #141517;
+    margin-bottom: 3rem;
+    letter-spacing: -2%;
+  }
+
+  &__text {
+    font-family: var(--ff);
+    font-size: 1.33rem;
+    color: #141517;
+    font-weight: 500;
+    letter-spacing: -2%;
+    opacity: 0.65;
+  }
+}
+
+// WORKFLOW
+.it-outsourcing-workflow {
+  margin-top: 20rem;
+
+  @media (max-width: 1359px) {
+    margin-top: 16rem;
+  }
+
+  @media (max-width: 991px) {
+    margin-top: 12rem;
+  }
+
+  @media (max-width: 767px) {
+    margin-top: 6.8rem;
+  }
+
+  &__container {
+    max-width: 1272px;
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.33rem;
+
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  &__title {
+    font-family: var(--ff);
+    font-weight: 500;
+    font-size: 3.33rem;
+    color: #FFFFF0;
+    margin-bottom: 16.6667rem;
+
+    @media (max-width: 1359px) {
+      font-size: 4.33rem;
+    }
+
+    @media (max-width: 991px) {
+      font-size: 3.33rem;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 24px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__idea {
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+}
+
+// STEP
+.it-outsourcing-workflow-step {
+  display: flex;
+  gap: 2rem;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 4.5rem;
+    left: 2.25rem;
+    width: 2px;
+    height: calc(100% - 2.25rem);
+    border-left: 2px dashed #FFFFF0;
+  }
+
+  &:last-child {
+    &::after {
+      display: none;
+    }
+  }
+
+  &__num {
+    position: relative;
+    z-index: 3;
+    flex: 0 0 4.5rem;
+    max-width: 4.5rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    background-color: #545C5D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--ff);
+    font-weight: 500;
+    font-size: 2.33rem;
+    color: #FFFFF0;
+  }
+
+  &__body {
+    padding-top: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.33rem;
+  }
+
+  &__title {
+    font-family: var(--ff);
+    font-weight: 500;
+    font-size: 2.33rem;
+    color: #FFFFF0;
+  }
+
+  &__text {
+    font-family: var(--ff);
+    font-size: 1.33rem;
+    color: #FFFFF0;
+    font-weight: 500;
+    letter-spacing: -2%;
+    opacity: 0.65;
+  }
+}
+
+// PRICING
+.it-outsourcing-pricing {
+  margin-top: 20rem;
+
+  @media (max-width: 1359px) {
+    margin-top: 16rem;
+  }
+  @media (max-width: 991px) {
+    margin-top: 12rem;
+  }
+  @media (max-width: 767px) {
+    margin-top: 6.8rem;
+  }
+
+  &__container {
+    max-width: 1272px;
+  }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.33rem;
+    margin-bottom: 3.33rem;
+  }
+
+  &__label {
+    display: inline-flex;
+    align-items: center;    
+    background-color: rgba(255,255,240,.1);
+    border-radius: 24px;
+    padding: .67rem 1.33rem;
+    font-size: 1.1667rem;
+    color: #FFFFF0;
+    font-weight: 500;
+    letter-spacing: -2%;
+  }
+
+  &__title {
+    font-family: var(--ff);
+    font-weight: 500;
+    font-size: 3.33rem;
+    color: #FFFFF0;
+
+    @media (max-width: 1359px) {
+      font-size: 4.33rem;
+    }
+
+    @media (max-width: 991px) {
+      font-size: 3.33rem;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 24px;
+    }
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .67rem;
+
+    @media (max-width: 991px) {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+}
+
+// CARD
+.it-outsourcing-pricing-card {
+  background-color: #F7F7F8;
+  box-shadow: 4px 4px 8px rgba(0,0,0,.42);
+  border-radius: 16px;
+  padding: 2.6667rem 2rem;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 991px) {
+    width: 480px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  &__name {
+    font-family: var(--ff);
+    font-weight: 500;
+    font-size: 2.33rem;
+    color: #141517;
+    margin-bottom: 1rem;
+    letter-spacing: -2%;
+    text-align: center;
+  }
+
+  &__subtitle {
+    font-family: var(--ff);
+    font-size: 1.33rem;
+    color: #141517;
+    font-weight: 500;
+    letter-spacing: -2%;
+    opacity: 0.65;
+    text-align: center;
+    margin-bottom: .6667rem;
+  }
+
+  &__price {
+    padding-top: 1.33rem;
+    font-family: var(--ff);
+    font-weight: 500;
+    font-size: 2.33rem;
+    color: #000000;
+    letter-spacing: -2%;
+    text-align: center;
+    margin-bottom: 1.33rem;
+  }
+
+  &__lead {
+    font-family: var(--ff);
+    font-size: 1.33rem;
+    color: #141517;
+    font-weight: 500;
+    letter-spacing: -2%;
+    opacity: 0.65;
+    text-align: center;
+    margin-bottom: 1.33rem;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  &__item {
+    display: flex;
+    gap: .67rem;
+  }
+
+  &__check {
+    margin-top: -.33rem;
+  }
+
+  &__text {
+    font-family: var(--ff);
+    font-size: 1.1667rem;
+    color: #141517;
+    font-weight: 500;
+    letter-spacing: -2%;
+  }
+
+  &__button {
+    margin-top: auto;
+    width: 100%;
+    padding: 1.25rem 2rem;
+    background-color: #414A4C;
+    border: solid 2px #414A4C;
+    border-radius: 50px;
+    transition: .3s ease-in-out;
+    font-family: var(--ff);
+    font-size: 1.33rem;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: transparent;
+        color: #414A4C;
+      }
+    }
+  }
+}
+
+// FOOTER
+.it-outsourcing-footer {
+  margin-top: 10.33rem;
+  background-color: #FFFFF0;
+  padding-top: 5.33rem;
+  padding-bottom: 5.33rem;
+
+  @media (max-width: 767px) {
+    margin-top: 6.8rem;
+  }
+
+  &__container {
+    max-width: 1272px;
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+
+    @media (max-width: 991px) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.33rem;
+
+    @media (max-width: 991px) {
+      order: 2;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+  }
+
+  &__logo {
+    img {
+      width: 300px;
+    }
+  }
+
+  &__copy {
+    font-family: var(--ff);
+    font-size: 1.1667rem;
+    color: #141517;
+    font-weight: 500;
+    letter-spacing: -2%;
+    a {
+      color: #141517;
+      text-decoration: underline;
+      transition: .3s ease-in-out;
+      @media (any-hover: hover) {
+        &:hover {
+          color: #414A4C;
+        }
+      }
+    }
+  }
+}
+
+// CONTACTS
+.it-outsourcing-footer-contacts {
+  background-color: #F7F7F8;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 4px 4px 8px rgba(0,0,0,.25);
+
+  @media (max-width: 991px) {
+    order: 1;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.33rem;
+    margin-bottom: 2.6667rem;
+  }
+
+  &__label {
+    display: inline-flex;
+    align-items: center;    
+    background-color: rgba(255,255,240,.1);
+    border-radius: 24px;
+    padding: .67rem 1.33rem;
+    font-family: var(--ff);
+    font-size: 1.1667rem;
+    background-color: rgba(65, 74, 76, .10);
+    color: #414A4C;
+    font-weight: 500;
+    letter-spacing: -2%;    
+  }
+
+  &__person {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__person-body {
+    text-align: right;
+  }
+
+  &__name {
+    font-family: var(--ff);
+    font-weight: 500;
+    font-size: 1.67rem;
+    color: #141517;
+    letter-spacing: -2%;
+  }
+
+  &__company {
+    font-family: var(--ff);
+    font-size: 1.33rem;
+    color: #141517;
+    font-weight: 500;
+    letter-spacing: -2%;
+    opacity: 0.65;
+  }
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__phone {
+    font-family: var(--ff);
+    font-size: 2.33rem;
+    color: #141517;
+    font-weight: 500;
+    letter-spacing: -2%;
+    a {
+      color: #141517;      
+      transition: .3s ease-in-out;
+    }
+  }
+
+  &__email {
+    font-family: var(--ff);
+    font-size: 1.667rem;
+    color: #141517;
+    font-weight: 500;
+    letter-spacing: -2%;
+    opacity: 0.65;
+    a {
+      color: #141517;      
+      transition: .3s ease-in-out;
+    }
+  }
+
+  &__telegram {
+    margin-top: 2.6667rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .67rem;
+    width: 100%;
+    font-family: var(--ff);
+    font-size: 1.33rem;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: -2%;
+    background-color: #414A4C;
+    border: solid 2px #414A4C;
+    border-radius: 50px;
+    padding: 1rem 1.33rem;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: transparent;
+        color: #414A4C;
+        svg {
+          path {
+            fill: #414A4C;
+          }
+        }
+      }
+    }
+    svg {
+      width: 24px;
+      height: 24px;
+
+    }
+  }
+}
+
+// DEVELOPMENT STYLES
+.test-display-none {
+  display: none;
+}

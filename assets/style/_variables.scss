@@ -1,0 +1,68 @@
+:root {
+  --primary: 60, 171, 54;
+  --primary: 255, 107, 53;
+
+  --red: 234, 50, 50;
+  --bg2: 178, 178, 178;
+  --border: #b2b2b2;
+  --bg: #f7f7f8;
+  --accent: #4d648d;
+  --error: #e74c3c;
+  --disabled: #ccc;
+  --light-gray: #e5e6e7;
+  --modal-gray: #6f7071;
+  --modal-bg: #f7f7f8;
+
+  --radius: 1.5rem;
+  --color-text: #2b2b2b;
+  --color-bg: #fffff0;
+
+  // переменные для смены темы!!!!
+  --border-theme: #757575;
+  // --grafit: #333333;
+  --grafit: #242829;
+  --light: #fffff0;
+  --text: #2b2b2b;
+
+  // шрифты
+  --ff: "Manrope", sans-serif;
+  --ff1: "DelaGothicOne-Regular", sans-serif;
+  --ff2: "GoblinOne-Regular", sans-serif;
+
+  --glitch-font-size: 80vw;
+  --glitch-font-family: --ff;
+}
+
+body {
+  background-color: var(--light);
+  --glitch-color: #414a4c;
+  color: var(--grafit);
+  font-family: var(--ff);
+
+  &.dark-mode,
+  html.dark-mode & {
+    --glitch-color: #fffff0;
+    // --light: #333333;
+    --light: #131212;
+
+    --grafit: #fffff0;
+    --text: #fffff0;
+  }
+  &.light-mode {
+    .vertical-slider-wrapper {
+      .swiper-button-next,
+      .swiper-button-prev {
+        opacity: 0.6 !important;
+        &.swiper-button-disabled {
+          opacity: 0.4 !important;
+        }
+        @media (any-hover: hover) {
+          &:hover {
+            opacity: 1 !important;
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.vertical-slider-wrapper {
+  .swiper {
+    &.swiper-vertical.vertical-slider {
+    }
+    .swiper-slide {
+      padding: 0;
+      width: 100% !important;
+    }
+  }
+  .swiper-pagination.swiper-pagination-vertical {
+    gap: 1rem;
+    .swiper-pagination-bullet {
+      background-color: var(--text) !important;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin: 0;
+      border: solid 0.1rem var(--light);
+    }
+  }
+}

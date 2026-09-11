@@ -1,0 +1,29 @@
+@use "_variables" as *;
+@use "_fonts";
+@use "_settings";
+@use "_modal";
+@use "_modal-about";
+@use "_swiper";
+@use "_button";
+@use "_it-outsourcing";
+@use "_develop";
+
+body {
+  padding: 0;
+  margin: 0;
+  min-width: 30rem;
+  font-size: 1.6rem;
+  height: 100%;
+  &.menu-open {
+    overflow: hidden;
+  }
+}
+.page-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  main {
+    flex-grow: 1;
+  }
+}
