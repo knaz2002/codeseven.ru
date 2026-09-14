@@ -573,7 +573,12 @@
   &__button {
     margin-top: auto;
     width: 100%;
-    padding: 1.25rem 2rem;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #414A4C;
     border: solid 2px #414A4C;
     border-radius: 50px;
@@ -596,7 +601,7 @@
 // FOOTER
 .it-outsourcing-footer {
   margin-top: 10.33rem;
-  background-color: #FFFFF0;
+  background-color: transparent;
   padding-top: 5.33rem;
   padding-bottom: 5.33rem;
 
@@ -730,20 +735,32 @@
     font-weight: 500;
     letter-spacing: -2%;
     a {
-      color: #141517;      
+      color: #141517;
+      display: inline-block;
+      white-space: nowrap;
+      cursor: pointer;
       transition: .3s ease-in-out;
     }
   }
 
   &__email {
     font-family: var(--ff);
-    font-size: 1.667rem;
+
+    /*
+     * Размер адреса электронной почты выравниваем по номеру телефона.
+     * Значение не превышает размер цифр телефона, поэтому оба контакта
+     * воспринимаются как единый визуальный блок.
+     */
+    font-size: 2.33rem;
     color: #141517;
     font-weight: 500;
     letter-spacing: -2%;
     opacity: 0.65;
     a {
-      color: #141517;      
+      color: #141517;
+      display: inline-block;
+      white-space: nowrap;
+      cursor: pointer;
       transition: .3s ease-in-out;
     }
   }
@@ -788,4 +805,62 @@
 // DEVELOPMENT STYLES
 .test-display-none {
   display: none;
+}
+/* Текст в подвале на тёмном анимированном фоне */
+.it-outsourcing-footer__copy,
+.it-outsourcing-footer__copy a {
+  color: #fffff0;
+}
+
+/*
+ * Единая высота всех основных текстовых кнопок страницы IT-аутсорсинга.
+ * Фиксируем 40 px независимо от внутренних padding, чтобы CTA-кнопки
+ * визуально совпадали между собой во всех секциях страницы.
+ */
+.it-outsourcing-hero__cta,
+.it-outsourcing-pricing-card__button,
+.it-outsourcing-footer-contacts__telegram {
+  height: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  box-sizing: border-box;
+  padding-top: 0;
+  padding-bottom: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/*
+ * Единый размер кастомных CTA-кнопок страницы IT-аутсорсинга.
+ *
+ * Эти элементы не используют общий класс .btn, поэтому их размер
+ * задаётся отдельно. Все основные кнопки теперь имеют одинаковые
+ * габариты 170 × 40px.
+ */
+.it-outsourcing-hero__cta,
+.it-outsourcing-pricing-card__button,
+.it-outsourcing-footer-contacts__telegram {
+  width: max-content !important;
+  min-width: 170px;
+  max-width: none;
+  white-space: nowrap;
+  height: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  box-sizing: border-box;
+  padding-top: 0;
+  padding-bottom: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+ * В карточках тарифов и контактов более короткая кнопка
+ * располагается по центру контейнера.
+ */
+.it-outsourcing-pricing-card__button,
+.it-outsourcing-footer-contacts__telegram {
+  margin-left: auto;
+  margin-right: auto;
 }

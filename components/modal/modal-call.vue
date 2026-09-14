@@ -15,7 +15,7 @@
               aria-label="Закрыть модальное окно"
             ></button>
             <h2 class="modal__name title">
-              {{ submitStatus === 'success' ? 'Сообщение отправлено' : 'Обратная связь' }}
+              {{ submitStatus === 'success' ? 'Сообщение отправлено' : 'Оставить заявку' }}
             </h2>
             <div class="modal__text">
               <!-- Успешная отправка: только сообщение и кнопка закрыть -->
@@ -63,6 +63,34 @@
                         name="Сообщение"
                         @update:valid="updateValidation('message', $event)"
                       />
+
+                      <!--
+                        Согласие на обработку персональных данных является
+                        обязательным условием отправки формы. По умолчанию
+                        чекбокс отмечен, но пользователь может снять отметку.
+                        В этом случае кнопка отправки становится недоступной.
+                      -->
+                      <label class="modal-call-consent">
+                        <input
+                          v-model="consentAccepted"
+                          type="checkbox"
+                          required
+                          class="modal-call-consent__input"
+                        />
+                        <span class="modal-call-consent__check" aria-hidden="true"></span>
+                        <span class="modal-call-consent__text">
+                          Соглашаюсь с
+                          <a
+                            href="https://codeseven.ru/opd.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            @click.stop
+                          >
+                            политикой конфиденциальности и обработки персональных данных
+                          </a>
+                        </span>
+                      </label>
+
                       <button
                         type="submit"
                         :disabled="!isFormValid || isSubmitting"
@@ -99,7 +127,13 @@ const formData = computed({
   },
 });
 
-const isFormValid = computed(() => modalStore.isCallFormValid);
+// Согласие на обработку персональных данных включено по умолчанию.
+// Без активного согласия отправка формы запрещена.
+const consentAccepted = ref(true);
+
+const isFormValid = computed(
+  () => modalStore.isCallFormValid && consentAccepted.value,
+);
 
 const submitStatus = computed(() => modalStore.callSubmitStatus);
 
@@ -114,6 +148,10 @@ const updateValidation = (field, isValid) => {
 };
 
 const submitForm = async () => {
+  // Даже если отправка будет вызвана программно, без обязательного
+  // согласия данные пользователя не должны быть отправлены.
+  if (!isFormValid.value) return;
+
   isSubmitting.value = true;
   await modalStore.submitCallForm();
   isSubmitting.value = false;
@@ -122,6 +160,10 @@ const submitForm = async () => {
 watch(isModalVisible, (newVal) => {
   if (!newVal) {
     modalStore.resetModalData("call");
+
+    // При следующем открытии формы обязательное согласие снова
+    // отображается отмеченным по умолчанию.
+    consentAccepted.value = true;
   }
 });
 </script>
@@ -175,4 +217,95 @@ watch(isModalVisible, (newVal) => {
   font-size: 0.95rem;
   line-height: 1.4;
 }
+
+/*
+ * Оформление обязательного согласия на обработку персональных данных.
+ * Используется собственная визуальная галочка, чтобы она одинаково
+ * выглядела в основных браузерах и соответствовала стилю проекта.
+ */
+.modal-call-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  line-height: 1.4;
+
+  &__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__check {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    margin-top: 2px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background-color: var(--bg);
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 2px;
+      width: 4px;
+      height: 8px;
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(45deg);
+      opacity: 0;
+    }
+  }
+
+  &__input:checked + &__check {
+    border-color: rgb(var(--primary));
+    background-color: rgb(var(--primary));
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &__input:focus-visible + &__check {
+    outline: 2px solid rgba(var(--primary), 0.35);
+    outline-offset: 2px;
+  }
+
+  &__text {
+    color: var(--color-text);
+    font-size: 1.2rem;
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+
+
+/*
+ * Центрирование CTA-кнопок формы.
+ * Сама ширина 170px задаётся глобальным стилем .btn.
+ */
+.modal-call .btn,
+.modal-call-result .btn {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 </style>

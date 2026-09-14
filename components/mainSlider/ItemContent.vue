@@ -7,6 +7,13 @@
       ]"
     >
       <img :src="item.img" alt="" @error="onImageError" />
+
+      <!--
+        Отдельный визуальный слой ripple находится непосредственно внутри
+        плашки услуги. Благодаря этому волна заполняет всю площадь карточки,
+        а overflow у самой плашки обрезает её точно по границам элемента.
+      -->
+      <span class="carousel-3d-ripple" aria-hidden="true"></span>
     </div>
     <div v-if="item.text && item.text.trim() !== ''" class="carousel-3d-text">
       <span v-for="(part, idx) in item.text.split('<br>')" :key="idx">
@@ -97,19 +104,13 @@ const onImageError = (e: Event) => {
 
 .carousel-3d-icon-box {
   position: relative;
+  overflow: hidden;
   background-color: transparent !important;
-  border: solid 2px #fff;
-  box-shadow: 
-    0 0 15px rgba(255, 255, 255, 0.8),
-    0 0 8px rgba(255, 255, 255, 0.8),
-    0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 2px rgba(255, 255, 255, 0.8),
-    0 0 1px rgba(255, 255, 255, 0.8),
-    inset 0 0 1px rgba(255, 255, 255, 0.8),
-    inset 0 0 1px rgba(255, 255, 255, 0.8),
-    inset 0 0 2px rgba(255, 255, 255, 0.8),
-    inset 0 0 5px rgba(255, 255, 255, 0.8),
-    inset 0 0 8px rgba(255, 255, 255, 0.8)
+  border: solid 1px #fff;
+  box-shadow:
+    0 0 6px rgba(255, 255, 255, 0.45),
+    0 0 3px rgba(255, 255, 255, 0.35),
+    inset 0 0 2px rgba(255, 255, 255, 0.25)
     !important;
 
   img {
@@ -129,4 +130,45 @@ const onImageError = (e: Event) => {
     border-radius: 8px;
   }
 }
+
+/*
+ * Реальный слой световой волны внутри плашки услуги.
+ *
+ * В исходном состоянии он невидим. MainSlider.vue запускает его через GSAP
+ * только в момент, когда активная передняя карточка проходит через центр
+ * контейнера по горизонтали.
+ */
+.carousel-3d-ripple {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 5;
+
+  /*
+   * Это именно внутренняя волна, а не дополнительная рамка.
+   * Яркое световое кольцо начинается около центра и при масштабировании
+   * проходит через всю площадь плашки до её углов.
+   */
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.12) 18%,
+      rgba(255, 255, 255, 0.95) 27%,
+      rgba(255, 255, 255, 0.55) 34%,
+      rgba(255, 255, 255, 0.16) 43%,
+      rgba(255, 255, 255, 0) 56%
+    );
+
+  mix-blend-mode: screen;
+
+  opacity: 0;
+  transform: scale(0.05);
+  transform-origin: center center;
+
+  will-change: transform, opacity;
+}
+
 </style>

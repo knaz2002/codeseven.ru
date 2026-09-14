@@ -85,8 +85,14 @@ function initThree() {
   scene = new THREE.Scene();
   scene.background = null;
 
-  // Создаём wireframe-сферу (визуальный каркас)
-  const geometry = new THREE.SphereGeometry(20, 32, 32);
+  // Единый масштаб всей 3D-композиции портфолио.
+  // Значение 0.85 уменьшает глобус, карточки и расстояние карточек
+  // от центра на 15%, сохраняя исходные пропорции всей сцены.
+  const portfolioScale = 0.85;
+
+  // Создаём wireframe-сферу (визуальный каркас).
+  // Базовый радиус 20 уменьшается пропорционально общему масштабу.
+  const geometry = new THREE.SphereGeometry(20 * portfolioScale, 32, 32);
   const material = new THREE.MeshBasicMaterial({
     color: 0x000000, // временный цвет — будет обновлён
     wireframe: true,
@@ -120,7 +126,9 @@ function initThree() {
 
   //РАЗМЕЩЕНИЕ КАРТОЧЕК НА СФЕРЕ
   projects.forEach((project, i) => {
-    const cardSize = 10;
+    // Размер каждой карточки уменьшается вместе с глобусом,
+    // чтобы визуальные пропорции композиции полностью сохранились.
+    const cardSize = 10 * portfolioScale;
     const imageTexture = new THREE.TextureLoader().load(project.img);
     imageTexture.minFilter = THREE.LinearFilter;
     imageTexture.magFilter = THREE.LinearFilter;
@@ -142,10 +150,14 @@ function initThree() {
     const theta = Math.sqrt(projects.length * Math.PI) * phi;
 
     // РАССТОЯНИЕ КАРТОЧЕК ОТ ЦЕНТРА СФЕРЫ
+    // Радиус размещения также уменьшается на 15%, поэтому карточки
+    // остаются на тех же относительных позициях относительно глобуса.
+    const cardRadius = 22 * portfolioScale;
+
     card.position.set(
-      22 * Math.cos(theta) * Math.sin(phi), // X
-      22 * Math.sin(theta) * Math.sin(phi), // Y
-      22 * Math.cos(phi), // Z
+      cardRadius * Math.cos(theta) * Math.sin(phi), // X
+      cardRadius * Math.sin(theta) * Math.sin(phi), // Y
+      cardRadius * Math.cos(phi), // Z
     );
 
     card.userData = { project, index: i };

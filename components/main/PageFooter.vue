@@ -5,7 +5,7 @@
         <div class="it-outsourcing-footer__brand">
           <a class="it-outsourcing-footer__logo" href="/" aria-label="Code7 — на главную">
             <img
-              src="/img/logo-text.svg"
+              src="/img/logo-text-light.svg"
               alt="Логотип Code7 в подвале страницы"
             />
           </a>

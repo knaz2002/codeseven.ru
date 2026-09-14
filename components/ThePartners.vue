@@ -30,6 +30,11 @@ export default {
           img: "/img/partners/timeweb.svg",
           url: "https://timeweb.cloud/?i=122675",
         },
+        {
+          id: 4,
+          img: "/img/partners/zetta.png",
+          url: "https://zt.codeseven.ru/",
+        },
       ],
     };
   },
@@ -43,10 +48,15 @@ export default {
 
   &__cards-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 3rem;
     align-items: center;
     justify-content: space-around;
+    @media (max-width: 991px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
     @media (max-width: 767px) {
       grid-template-columns: 1fr;
       max-width: 50%;
@@ -56,7 +66,17 @@ export default {
     .card {
       min-height: auto !important;
       background-color: var(--bg);
-      padding: 9rem 3rem;
+
+      /*
+       * Все логотипы партнёров центрируем внутри плашки независимо
+       * от исходных пропорций SVG или PNG. Это особенно важно после
+       * добавления Zetta: высота строки определяется самой высокой
+       * карточкой, поэтому без flex короткие логотипы смещаются вверх.
+       */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 3rem;
       border-radius: var(--radius);
       overflow: hidden;
       @media (max-width: 767px) {
@@ -69,6 +89,16 @@ export default {
       }
       &__img {
         margin-bottom: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          display: block;
+          margin: 0 auto;
+          object-fit: contain;
+        }
       }
     }
   }

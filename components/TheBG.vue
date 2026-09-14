@@ -21,7 +21,7 @@ let rafId: number | null = null;
 let isMobile = false;
 
 // КОЛИЧЕСТВО ЗВЁЗД — будем инициализировать в onMounted
-let STAR_COUNT = 20;
+let STAR_COUNT = 26;
 
 // РАЗМЕР ЗВЕЗД (максимальный)
 const STAR_SIZE = 5;
@@ -52,8 +52,25 @@ interface Star {
   y: number;
   z: number;
   size: number;
+
+  // Обычные звёзды получают собственные параметры движения,
+  // чтобы их траектории и амплитуды не совпадали.
   phaseX: number;
   phaseY: number;
+  secondaryPhase: number;
+  amplitudeX: number;
+  amplitudeY: number;
+  frequencyX: number;
+  frequencyY: number;
+  curveFactor: number;
+
+  // Примерно 10% звёзд являются "странниками".
+  // Они перемещаются практически по всей площади экрана.
+  isWanderer: boolean;
+  wanderPhaseX: number;
+  wanderPhaseY: number;
+  wanderSpeedX: number;
+  wanderSpeedY: number;
 }
 
 let stars: Star[] = [];
@@ -63,15 +80,60 @@ let stars: Star[] = [];
 // └───────────────────────────────────────┘
 const initStars = () => {
   stars = [];
+
+  // Ровно около 10% звёзд будут перемещаться
+  // почти по всей площади экрана.
+  const wandererCount = Math.max(1, Math.round(STAR_COUNT * 0.1));
+
+  // Формируем список индексов и перемешиваем его,
+  // чтобы "странниками" при каждом запуске становились разные звёзды.
+  const indexes = Array.from({ length: STAR_COUNT }, (_, index) => index);
+
+  for (let i = indexes.length - 1; i > 0; i--) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    [indexes[i], indexes[randomIndex]] = [indexes[randomIndex], indexes[i]];
+  }
+
+  const wandererIndexes = new Set(indexes.slice(0, wandererCount));
+
   for (let i = 0; i < STAR_COUNT; i++) {
+    const depth = Math.random();
+
     stars.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      z: Math.random(),
-      // Размер от почти нуля до STAR_SIZE (не больше!)
+      z: depth,
+
+      // Размер звезды оставляем случайным.
       size: Math.random() * STAR_SIZE,
-      phaseX: Math.random() * 100,
-      phaseY: Math.random() * 100,
+
+      phaseX: Math.random() * Math.PI * 2,
+      phaseY: Math.random() * Math.PI * 2,
+      secondaryPhase: Math.random() * Math.PI * 2,
+
+      // У обычных звёзд амплитуда теперь существенно больше.
+      // Диапазоны по X и Y намеренно различаются.
+      amplitudeX: 18 + Math.random() * 42,
+      amplitudeY: 18 + Math.random() * 42,
+
+      // Собственная скорость каждой звезды.
+      frequencyX: 0.00045 + Math.random() * 0.0011,
+      frequencyY: 0.00045 + Math.random() * 0.0011,
+
+      // Дополнительное искривление траектории.
+      curveFactor: 0.25 + Math.random() * 0.55,
+
+      isWanderer: wandererIndexes.has(i),
+
+      // У каждой крупно перемещающейся звезды
+      // совершенно независимые фазы.
+      wanderPhaseX: Math.random() * Math.PI * 2,
+      wanderPhaseY: Math.random() * Math.PI * 2,
+
+      // Периоды движения отличаются друг от друга.
+      // Благодаря этому звёзды не идут одной группой.
+      wanderSpeedX: 0.00007 + Math.random() * 0.00011,
+      wanderSpeedY: 0.00006 + Math.random() * 0.00013,
     });
   }
 };
@@ -83,27 +145,111 @@ const drawStar = (star: Star, time: number) => {
   if (!ctx) return;
 
   const depthFactor = star.z;
+
+  // Реакцию на мышь сохраняем как отдельный эффект параллакса.
   const offsetX = mouseX * depthFactor * DEPTH_FACTOR * width;
   const offsetY = mouseY * depthFactor * DEPTH_FACTOR * height;
 
-  const jitterX =
-    Math.sin(time * JITTER_FREQUENCY + star.phaseX) *
-    JITTER_AMOUNT *
-    depthFactor;
-  const jitterY =
-    Math.cos(time * JITTER_FREQUENCY + star.phaseY) *
-    JITTER_AMOUNT *
-    depthFactor;
+  let x: number;
+  let y: number;
 
-  const x = star.x + offsetX + jitterX;
-  const y = star.y + offsetY + jitterY;
+  if (star.isWanderer) {
+    /*
+     * Около 10% звёзд двигаются практически по всему экрану.
+     *
+     * По горизонтали они используют до 47% ширины
+     * относительно центра, а по вертикали — до 46% высоты.
+     *
+     * Разные скорости X и Y образуют индивидуальные
+     * траектории Лиссажу вместо одинаковых окружностей.
+     */
+    const horizontalSpan =
+      0.45 +
+      Math.sin(time * star.wanderSpeedY * 0.19 + star.phaseX) * 0.02;
+
+    const verticalSpan =
+      0.44 +
+      Math.cos(time * star.wanderSpeedX * 0.17 + star.phaseY) * 0.02;
+
+    x =
+      width *
+        (
+          0.5 +
+          Math.sin(
+            time * star.wanderSpeedX + star.wanderPhaseX,
+          ) *
+            horizontalSpan
+        ) +
+      offsetX * 0.12;
+
+    y =
+      height *
+        (
+          0.5 +
+          Math.sin(
+            time * star.wanderSpeedY + star.wanderPhaseY,
+          ) *
+            verticalSpan
+        ) +
+      offsetY * 0.12;
+  } else {
+    /*
+     * Остальные звёзды двигаются локально,
+     * но теперь каждая имеет собственную амплитуду,
+     * собственную скорость и дополнительную волну.
+     */
+    const primaryX =
+      Math.sin(
+        time * star.frequencyX + star.phaseX,
+      ) * star.amplitudeX;
+
+    const primaryY =
+      Math.cos(
+        time * star.frequencyY + star.phaseY,
+      ) * star.amplitudeY;
+
+    const secondaryX =
+      Math.sin(
+        time * star.frequencyY * 0.53 + star.secondaryPhase,
+      ) *
+      star.amplitudeY *
+      star.curveFactor;
+
+    const secondaryY =
+      Math.cos(
+        time * star.frequencyX * 0.41 +
+          star.secondaryPhase * 1.37,
+      ) *
+      star.amplitudeX *
+      star.curveFactor;
+
+    // Даже самые дальние звёзды получают заметное движение.
+    const movementDepth = 0.45 + depthFactor * 0.55;
+
+    x =
+      star.x +
+      offsetX +
+      (primaryX + secondaryX) * movementDepth;
+
+    y =
+      star.y +
+      offsetY +
+      (primaryY + secondaryY) * movementDepth;
+  }
 
   const color = getStarColor();
+
   ctx.shadowColor = color;
   ctx.shadowBlur = GLOW_BLUR;
   ctx.globalAlpha = GLOW_ALPHA;
   ctx.fillStyle = color;
-  ctx.fillRect(x - star.size / 2, y - star.size / 2, star.size, star.size);
+
+  ctx.fillRect(
+    x - star.size / 2,
+    y - star.size / 2,
+    star.size,
+    star.size,
+  );
 
   ctx.shadowBlur = 0;
   ctx.shadowColor = "transparent";
@@ -167,13 +313,13 @@ onMounted(() => {
 
   // ✅ Настройка параметров под устройство
   if (isMobile) {
-    STAR_COUNT = 20;
+    STAR_COUNT = 26;
     JITTER_AMOUNT = 9.0;
     JITTER_FREQUENCY = 0.0025;
     GLOW_BLUR = 1;
     GLOW_ALPHA = 0.5;
   } else {
-    STAR_COUNT = 40;
+    STAR_COUNT = 52;
     JITTER_AMOUNT = 5.8;
     JITTER_FREQUENCY = 0.003;
     GLOW_BLUR = 2;

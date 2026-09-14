@@ -21,18 +21,18 @@
     </template>
 
     <template #section-2>
-      <section class="slide-content">
-        <h2 class="title mt-5 name-block">Наши партнеры</h2>
-        <Partners />
-      </section>
-    </template>
-
-    <template #section-3>
       <section class="slide-content" id="portfolio">
         <h2 class="title mt-5 name-block">Портфолио</h2>
         <div class="swiper-no-swiping">
           <PortfolioSphere :cards="portfolioCards" />
         </div>
+      </section>
+    </template>
+
+    <template #section-3>
+      <section class="slide-content">
+        <h2 class="title mt-5 name-block">Наши партнеры</h2>
+        <Partners />
       </section>
     </template>
   </TheVerticalSlider>
@@ -60,8 +60,8 @@ export default {
       sections: [
         { id: "glitch", title: "Glitch Section" },
         { id: "main-slider", title: "Main Slider Section" },
-        { id: "partners", title: "Partners Section" },
         { id: "portfolio", title: "Cards PortfolioSphere" },
+        { id: "partners", title: "Partners Section" },
       ],
       portfolioCards: [
         {

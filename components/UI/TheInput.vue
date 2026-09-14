@@ -30,12 +30,6 @@
       :class="{ invalid: !isValid && isTouched }"
       autocomplete="tel"
     />
-    <span
-      v-if="name"
-      class="block-input__label block-input__label--always-active"
-    >
-      {{ name }}
-    </span>
     <span v-if="!isValid && isTouched" class="error-message">{{
       errorMessage
     }}</span>
@@ -208,8 +202,8 @@ export default {
   }
   input {
     width: 100%;
-    padding: 1.5rem 2.5rem;
-    height: 5rem;
+    padding: 0 2.5rem;
+    height: 40px;
     font-size: 1.4rem;
     border: none;
     outline: none;
@@ -219,8 +213,8 @@ export default {
 
     @media (max-width: 767px) {
       font-size: 1.2rem;
-      padding: 1.2rem 1.8rem;
-      height: 4rem;
+      padding: 0 1.8rem;
+      height: 40px;
     }
   }
 
@@ -256,12 +250,12 @@ export default {
   position: relative;
   border: 1px solid var(--border);
   border-radius: 6px;
-  height: 5rem;
-  padding: 2rem 2.5rem;
+  height: 40px;
+  padding: 0 2.5rem;
   .block-input__mask {
     position: absolute;
     left: 2.5rem;
-    top: 70%;
+    top: 50%;
     transform: translateY(-50%);
     font-size: 1.4rem;
     color: var(--color-text);

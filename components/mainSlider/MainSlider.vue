@@ -183,6 +183,106 @@ const AUTO_ROTATE_DURATION = 100;
 const AUTO_ROTATE_ENABLED = true;
 const MOBILE_ROW_OFFSET = 110;
 
+
+// ---------------------------------------------------------------------
+// RIPPLE ПРИ ПРОХОЖДЕНИИ АКТИВНОЙ ПЛАШКИ ЧЕРЕЗ ЦЕНТР КОНТЕЙНЕРА.
+//
+// Здесь используется не CSS-класс с таймером, а реальный DOM-слой внутри
+// карточки. GSAP непосредственно управляет его масштабом и прозрачностью.
+//
+// Эффект запускается только:
+// 1. когда секция с каруселью действительно видима пользователю;
+// 2. когда карточка находится в передней части 3D-карусели;
+// 3. когда карточка входит в центральную область контейнера по ширине.
+// ---------------------------------------------------------------------
+const centerZoneState = [];
+
+let isCarouselVisible = false;
+let carouselVisibilityObserver = null;
+
+// Центральная область имеет небольшую ширину, чтобы срабатывание было
+// стабильным и при автопрокрутке, и при быстром ручном перетаскивании.
+const CENTER_RIPPLE_ZONE = 45;
+
+// Depth близкий к единице соответствует передней активной части карусели.
+// Это исключает ripple у карточки, проходящей через центр позади.
+const CENTER_RIPPLE_MIN_DEPTH = 0.9;
+
+const triggerCenterRipple = (element, index, x, depth, enabled = true) => {
+  const insideCenter =
+    enabled &&
+    isCarouselVisible &&
+    depth >= CENTER_RIPPLE_MIN_DEPTH &&
+    Math.abs(x) <= CENTER_RIPPLE_ZONE;
+
+  const wasInsideCenter = Boolean(centerZoneState[index]);
+
+  centerZoneState[index] = insideCenter;
+
+  // Волна запускается только в момент ВХОДА карточки в центральную область.
+  // Пока карточка остаётся около центра, повторные анимации не создаются.
+  if (!insideCenter || wasInsideCenter) {
+    return;
+  }
+
+  const ripple = element.querySelector(".carousel-3d-ripple");
+  const iconBox = element.querySelector(".carousel-3d-icon-box");
+
+  if (!ripple) {
+    return;
+  }
+
+  // Останавливаем возможную предыдущую анимацию этой же карточки,
+  // после чего гарантированно начинаем новую волну из самого центра.
+  gsap.killTweensOf(ripple);
+
+  const rippleTimeline = gsap.timeline();
+
+  rippleTimeline.set(ripple, {
+    scale: 0.05,
+    opacity: 0,
+  });
+
+  rippleTimeline.to(ripple, {
+    opacity: 1,
+    duration: 0.07,
+    ease: "none",
+  });
+
+  /*
+   * Масштаб 3.2 выбран намеренно: радиальное кольцо должно пройти не только
+   * через середину плашки, но и через её края и углы. Сама карточка имеет
+   * overflow: hidden, поэтому свет не выходит за её геометрию.
+   */
+  rippleTimeline.to(ripple, {
+    scale: 3.2,
+    opacity: 0,
+    duration: 0.95,
+    ease: "power2.out",
+  });
+
+  // Короткое усиление яркости всей плашки подчёркивает момент прохождения
+  // через центр, но не изменяет её положение, масштаб или вращение.
+  if (iconBox) {
+    gsap.killTweensOf(iconBox, "filter");
+
+    gsap.fromTo(
+      iconBox,
+      {
+        filter: "brightness(1)",
+      },
+      {
+        filter: "brightness(1.35)",
+        duration: 0.14,
+        repeat: 1,
+        yoyo: true,
+        ease: "power1.out",
+        clearProps: "filter",
+      },
+    );
+  }
+};
+
 const getMode = () => {
   const w = window.innerWidth;
   if (w <= 767) return "mobile";
@@ -235,6 +335,13 @@ const updatePositions = () => {
         zIndex: Math.round(depth * 100),
         transformOrigin: "center",
       });
+
+      // Мобильная версия использует отдельную двухрядную геометрию,
+      // поэтому эффект прохождения через общий центр здесь отключён.
+      triggerCenterRipple(els[i], i, x, depth, false);
+
+
+
     }
   } else {
     const step = (2 * Math.PI) / total;
@@ -257,6 +364,10 @@ const updatePositions = () => {
         zIndex: Math.round(depth * 100),
         transformOrigin: "center",
       });
+
+      // Для планшета и десктопа ripple запускается именно тогда,
+      // когда передняя активная карточка проходит через центр контейнера.
+      triggerCenterRipple(els[i], i, x, depth, true);
     }
   }
 };
@@ -401,6 +512,37 @@ onMounted(() => {
 
     const container = containerRef.value;
     if (container) {
+      /*
+       * Карусель продолжает вращаться даже тогда, когда пользователь находится
+       * на другой вертикальной секции главной страницы. Поэтому без наблюдателя
+       * ripple мог проиграться невидимо ещё до открытия блока "Услуги".
+       *
+       * IntersectionObserver разрешает эффект только когда значительная часть
+       * контейнера реально находится в области просмотра.
+       */
+      carouselVisibilityObserver = new IntersectionObserver(
+        ([entry]) => {
+          isCarouselVisible =
+            entry.isIntersecting && entry.intersectionRatio >= 0.35;
+
+          if (isCarouselVisible) {
+            // Сбрасываем состояние зон, чтобы текущая центральная карточка
+            // сразу получила ripple при открытии секции "Услуги".
+            centerZoneState.fill(false);
+
+            requestAnimationFrame(() => {
+              updatePositions();
+            });
+          } else {
+            centerZoneState.fill(false);
+          }
+        },
+        {
+          threshold: [0, 0.35, 0.6],
+        },
+      );
+
+      carouselVisibilityObserver.observe(container);
       container.addEventListener("mousedown", handleMouseDown);
       container.addEventListener("mousemove", handleMouseMove);
       container.addEventListener("mouseup", handleMouseUp);
@@ -423,6 +565,12 @@ onMounted(() => {
 onBeforeUnmount(() => {
   if (animationId) cancelAnimationFrame(animationId);
   if (autoRotateTL) autoRotateTL.kill();
+
+  // Наблюдатель больше не нужен после уничтожения компонента.
+  if (carouselVisibilityObserver) {
+    carouselVisibilityObserver.disconnect();
+    carouselVisibilityObserver = null;
+  }
   const container = containerRef.value;
   if (container) {
     container.removeEventListener("mousedown", handleMouseDown);
@@ -527,4 +675,140 @@ defineExpose({
     height: 220px;
   }
 }
+
+/*
+ * Белая расходящаяся волна вокруг активной плашки услуги.
+ * Исходный светящийся бордер карточки остаётся без изменений:
+ * ripple рисуется отдельным псевдоэлементом поверх него.
+ */
+
+
+@keyframes carousel-center-ripple {
+  0% {
+    transform: scale(0.98);
+    opacity: 1;
+  }
+
+  35% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+}
+
+
+/*
+ * RIPPLE ВНУТРИ ПЛАШКИ УСЛУГИ.
+ *
+ * Волна появляется в геометрическом центре активной карточки и
+ * расширяется через всю её площадь. Эффект намеренно обрезается
+ * границами самой карточки, поэтому он не выглядит как увеличение
+ * внешней рамки.
+ */
+.carousel-3d-item.is-center-ripple :deep(.carousel-3d-icon-box) {
+  overflow: hidden;
+}
+
+/*
+ * Радиальный градиент формирует световое кольцо.
+ * В начале оно очень маленькое, затем быстро проходит через всю
+ * поверхность карточки и растворяется у её краёв.
+ */
+.carousel-3d-item.is-center-ripple :deep(.carousel-3d-icon-box)::after {
+  content: "";
+  position: absolute;
+
+  /*
+   * Делаем слой немного больше карточки, чтобы волна полностью
+   * проходила через углы прямоугольной плашки.
+   */
+  inset: -35%;
+
+  pointer-events: none;
+  z-index: 5;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 16%,
+      rgba(255, 255, 255, 0.16) 20%,
+      rgba(255, 255, 255, 0.78) 24%,
+      rgba(255, 255, 255, 0.38) 28%,
+      rgba(255, 255, 255, 0.08) 34%,
+      rgba(255, 255, 255, 0) 42%
+    );
+
+  mix-blend-mode: screen;
+
+  transform: scale(0.08);
+  opacity: 0;
+
+  animation:
+    carousel-center-ripple-fill
+    1.05s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+}
+
+/*
+ * Дополнительная короткая вспышка поверхности делает момент
+ * прохождения центра заметнее, но не перекрывает иконку.
+ */
+.carousel-3d-item.is-center-ripple :deep(.carousel-3d-icon-box) {
+  animation:
+    carousel-center-ripple-flash
+    0.7s
+    ease-out;
+}
+
+@keyframes carousel-center-ripple-fill {
+  0% {
+    transform: scale(0.08);
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.85;
+  }
+
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+@keyframes carousel-center-ripple-flash {
+  0% {
+    box-shadow:
+      0 0 15px rgba(255, 255, 255, 0.8),
+      0 0 8px rgba(255, 255, 255, 0.8),
+      inset 0 0 0 rgba(255, 255, 255, 0);
+  }
+
+  28% {
+    box-shadow:
+      0 0 22px rgba(255, 255, 255, 0.95),
+      0 0 12px rgba(255, 255, 255, 0.85),
+      inset 0 0 55px rgba(255, 255, 255, 0.18);
+  }
+
+  100% {
+    box-shadow:
+      0 0 15px rgba(255, 255, 255, 0.8),
+      0 0 8px rgba(255, 255, 255, 0.8),
+      inset 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+
 </style>

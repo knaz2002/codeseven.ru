@@ -3,60 +3,60 @@
     <section ref="schemeRef" class="develop-page__main-scheme develop-page__main-scheme--develop">
       <svg viewBox="0 0 1920 1913" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="0.5" y="0.5" width="1919" height="829" />
-        <path class="line line-left-right" data-draw-duration="3.5" data-draw-delay="4" data-draw-ease="power2.inOut"
+        <path class="line line-left-right" data-draw-duration="1.75" data-draw-delay="2" data-draw-ease="power2.inOut"
           d="M617.311 407V506.5C617.311 512.023 612.833 516.5 607.311 516.5H512.58C507.057 516.5 502.58 520.977 502.58 526.5V600.5C502.58 606.023 498.102 610.5 492.58 610.5H388.5C382.977 610.5 378.5 614.977 378.5 620.5L378.5 746.5C378.5 752.023 382.977 756.5 388.5 756.5H581.238M581.238 756.5V904C581.238 909.523 576.761 914 571.238 914H-34M581.238 756.5V656.5C581.238 650.977 585.715 646.5 591.238 646.5H914.902C918.865 646.5 922.454 644.16 924.053 640.534L960 559"
           stroke="url(#paint1_linear_3180_441)" />
 
-        <path class="line line-left-right" data-draw-duration="3.5" data-draw-delay="4" data-draw-ease="power2.inOut"
+        <path class="line line-left-right" data-draw-duration="1.75" data-draw-delay="2" data-draw-ease="power2.inOut"
           d="M1301.69 407V506.5C1301.69 512.023 1306.17 516.5 1311.69 516.5H1406.42C1411.94 516.5 1416.42 520.977 1416.42 526.5V600.5C1416.42 606.023 1420.9 610.5 1426.42 610.5H1526.5C1532.02 610.5 1536.5 614.977 1536.5 620.5L1536.5 746.5C1536.5 752.023 1532.02 756.5 1526.5 756.5H1337.76M1337.76 756.5V904C1337.76 909.523 1342.24 914 1347.76 914H1953M1337.76 756.5V656.5C1337.76 650.977 1333.28 646.5 1327.76 646.5H1004.1C1000.13 646.5 996.546 644.16 994.947 640.534L960 559"
           stroke="url(#paint2_linear_3180_441)" />
 
-        <path class="line line-left-right" data-draw-duration="3.5" data-draw-delay="0.3" data-draw-ease="power2.inOut"
+        <path class="line line-left-right" data-draw-duration="1.75" data-draw-delay="0.15" data-draw-ease="power2.inOut"
           d="M-116 219H299C304.523 219 309 223.477 309 229V352C309 357.523 313.685 362 319.208 362H766"
           stroke="url(#paint3_linear_3180_441)" />
 
-        <path class="line line-left-right" data-draw-duration="3.5" data-draw-delay="0.3" data-draw-ease="power2.inOut"
+        <path class="line line-left-right" data-draw-duration="1.75" data-draw-delay="0.15" data-draw-ease="power2.inOut"
           d="M-116 521H112.5C118.023 521 122.5 516.523 122.5 511V388C122.5 382.477 127.054 378 132.577 378H766"
           stroke="url(#paint4_linear_3180_441)" />
 
         <circle cx="309" cy="286" r="6" fill="#414A4C" />
 
-        <path class="line line-left-right" data-draw-duration="3.5" data-draw-delay="0.3" data-draw-ease="power2.inOut"
+        <path class="line line-left-right" data-draw-duration="1.75" data-draw-delay="0.15" data-draw-ease="power2.inOut"
           d="M2036 219H1621C1615.477 219 1611 223.477 1611 229V352C1611 357.523 1606.315 362 1600.792 362H1154"
           stroke="url(#paint5_linear_3180_441)" />
 
-        <path class="line line-left-right" data-draw-duration="3.5" data-draw-delay="0.3" data-draw-ease="power2.inOut"
+        <path class="line line-left-right" data-draw-duration="1.75" data-draw-delay="0.15" data-draw-ease="power2.inOut"
           d="M2036 521H1807.5C1801.977 521 1797.5 516.523 1797.5 511V388C1797.5 382.477 1792.946 378 1787.423 378H1154"
           stroke="url(#paint6_linear_3180_441)" />
 
         <circle cx="1611" cy="286" r="6" fill="#414A4C" />
         <circle cx="960" cy="559" r="6" fill="#414A4C" />
 
-        <path class="line line-left-right" data-draw-duration="3.5" data-draw-delay="0.3" data-draw-ease="power2.inOut"
+        <path class="line line-left-right" data-draw-duration="1.75" data-draw-delay="0.15" data-draw-ease="power2.inOut"
           d="M960 998L960 1472" stroke="url(#paint7_linear_3180_441)" />
 
-        <path class="line line-left-right" data-draw-duration="3.5" data-draw-delay="0.3" data-draw-ease="power2.inOut"
+        <path class="line line-left-right" data-draw-duration="1.75" data-draw-delay="0.15" data-draw-ease="power2.inOut"
           d="M1541 914V1139C1541 1144.52 1536.523 1149 1531 1149H1132" stroke="#414A4C" stroke-opacity="0.3" />
 
-        <path class="line line-left-right" data-draw-duration="3.5" data-draw-delay="0.3" data-draw-ease="power2.inOut"
+        <path class="line line-left-right" data-draw-duration="1.75" data-draw-delay="0.15" data-draw-ease="power2.inOut"
           d="M379 914V1139C379 1144.52 383.477 1149 389 1149H788" stroke="#414A4C" stroke-opacity="0.3" />
-        <path class="line line-left-right" data-draw-duration="3.5" data-draw-delay="0.3" data-draw-ease="power2.inOut"
+        <path class="line line-left-right" data-draw-duration="1.75" data-draw-delay="0.15" data-draw-ease="power2.inOut"
           d="M554 1565V1670C554 1675.52 558.365 1680 563.887 1680C611.921 1680 824.126 1680 959.836 1680M1154.5 1680C1154.5 1680 1030 1680 959.836 1680M959.836 1680V1913"
           stroke="url(#paint8_linear_3180_441)" />
 
-        <path class="line line-left-right" data-draw-duration="3.5" data-draw-delay="0.3" data-draw-ease="power2.inOut"
+        <path class="line line-left-right" data-draw-duration="1.75" data-draw-delay="0.15" data-draw-ease="power2.inOut"
           d="M1339 1149V1570" stroke="url(#paint9_linear_3180_441)" stroke-opacity="0.2" />
 
-        <path class="line line-left-right" data-draw-duration="3.5" data-draw-delay="0.3" data-draw-ease="power2.inOut"
+        <path class="line line-left-right" data-draw-duration="1.75" data-draw-delay="0.15" data-draw-ease="power2.inOut"
           d="M727 1472H961" stroke="url(#paint10_linear_3180_441)" />
 
         <circle cx="960" cy="1472" r="6" fill="#414A4C" />
         <circle cx="960" cy="1680" r="6" fill="#414A4C" />
 
-        <path class="line line-left-right" data-draw-duration="3.5" data-draw-delay="0.3" data-draw-ease="power2.inOut"
+        <path class="line line-left-right" data-draw-duration="1.75" data-draw-delay="0.15" data-draw-ease="power2.inOut"
           d="M581 1149V1570" stroke="url(#paint11_linear_3180_441)" stroke-opacity="0.2" />
 
-        <path class="line line-left-right" data-draw-duration="2.5" data-draw-delay="0.3" data-draw-ease="power2.inOut"
+        <path class="line line-left-right" data-draw-duration="1.25" data-draw-delay="0.15" data-draw-ease="power2.inOut"
           d="M960 884V563.5" stroke="url(#paint12_linear_3180_441)" />
         <defs>
           <linearGradient id="paint0_linear_3180_441" x1="960" y1="0" x2="960" y2="830" gradientUnits="userSpaceOnUse">
@@ -131,17 +131,17 @@
 
     <section class="develop-page__content develop-page__content--develop">
       <div class="container">
-        <h1 class="develop-page__content-title text-anim" data-text-duration="1.2" data-text-delay="0.5"
+        <h1 class="develop-page__content-title text-anim" data-text-duration="0.6" data-text-delay="0.25"
           data-text-offset="40">
           Пошаговая система разработки сайта с нуля
         </h1>
 
-        <p class="develop-page__content-descr text-anim-up" data-text-duration="1.2" data-text-delay="0.8"
+        <p class="develop-page__content-descr text-anim-up" data-text-duration="0.6" data-text-delay="0.4"
           data-text-offset="20">
           мы подготовили общее описание ключевых этапов разработки, которые реализуем в нашей IT-компании.
         </p>
 
-        <button type="button" data-text-duration="1.2" data-text-delay="0.8" data-text-offset="20"
+        <button type="button" data-text-duration="0.6" data-text-delay="0.4" data-text-offset="20"
           class="develop-page__content-btn btn btn-light text-anim-up" @click="openCallModal">
           Оставить заявку
           <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -151,13 +151,13 @@
           </svg>
         </button>
 
-        <h2 class="develop-page__content-subtitle develop-page__content-subtitle--develop text-anim" data-text-duration="1.2" data-text-delay="0.8"
+        <h2 class="develop-page__content-subtitle develop-page__content-subtitle--develop text-anim" data-text-duration="0.6" data-text-delay="0.4"
           data-text-offset="20">
           Кратко о стадиях разработки сайта
         </h2>
 
-        <div class="develop-page__stage develop-page__stage--1 text-anim-up" data-text-duration="1.2"
-          data-text-delay="0.8" data-text-offset="20">
+        <div class="develop-page__stage develop-page__stage--1 text-anim-up" data-text-duration="0.6"
+          data-text-delay="0.4" data-text-offset="20">
           <div class="develop-page__stage-num">/1/</div>
           <ul class="develop-page__stage-list">
             <li>Исследуем нишу, формируем идеи проекта, который отвечает потребностям целевой аудитории.</li>
@@ -166,8 +166,8 @@
           </ul>
         </div>
 
-        <div class="develop-page__stage develop-page__stage--2 text-anim-up" data-text-duration="1.2"
-          data-text-delay="0.8" data-text-offset="20">
+        <div class="develop-page__stage develop-page__stage--2 text-anim-up" data-text-duration="0.6"
+          data-text-delay="0.4" data-text-offset="20">
           <div class="develop-page__stage-num">/2/</div>
           <ul class="develop-page__stage-list">
             <li>Готовим дизайн-макеты для программирования. Вёрстка и разработка обеспечивают скорость загрузки, хорошую
@@ -177,8 +177,8 @@
           </ul>
         </div>
 
-        <div class="develop-page__stage develop-page__stage--3 text-anim-up" data-text-duration="1.2"
-          data-text-delay="0.8" data-text-offset="20">
+        <div class="develop-page__stage develop-page__stage--3 text-anim-up" data-text-duration="0.6"
+          data-text-delay="0.4" data-text-offset="20">
           <div class="develop-page__stage-num">/3/</div>
           <ul class="develop-page__stage-list">
             <li>Проверяем тестирование на наличие багов, ошибок и возможных улучшений.</li>
@@ -193,13 +193,13 @@
     <section class="develop-page__content develop-page__content--steps develop-page__content--steps--develop">
       <div class="container">
 
-        <h2 class="develop-page__content-subtitle develop-page__content-subtitle--develop text-anim" data-text-duration="1.2" data-text-delay="0.8"
+        <h2 class="develop-page__content-subtitle develop-page__content-subtitle--develop text-anim" data-text-duration="0.6" data-text-delay="0.4"
           data-text-offset="20">
           Этапы создания сайта
         </h2>
 
-        <div class="develop-page__stage develop-page__stage--1 develop-page__stage--toggle text-anim-up" data-text-duration="1.2"
-          data-text-delay="0.8" data-text-offset="20">
+        <div class="develop-page__stage develop-page__stage--1 develop-page__stage--toggle text-anim-up" data-text-duration="0.6"
+          data-text-delay="0.4" data-text-offset="20">
           <div class="develop-page__stage-abs">
             <div class="develop-page__stage-row">
               <div class="develop-page__stage-num">/1/</div>
@@ -219,8 +219,8 @@
           </div>
         </div>
 
-        <div class="develop-page__stage develop-page__stage--2 develop-page__stage--toggle text-anim-up" data-text-duration="1.2"
-          data-text-delay="0.8" data-text-offset="20">
+        <div class="develop-page__stage develop-page__stage--2 develop-page__stage--toggle text-anim-up" data-text-duration="0.6"
+          data-text-delay="0.4" data-text-offset="20">
           <div class="develop-page__stage-abs">
             <div class="develop-page__stage-row">
               <div class="develop-page__stage-num">/2/</div>
@@ -231,8 +231,8 @@
           </div>
         </div>
 
-        <div class="develop-page__stage develop-page__stage--3 develop-page__stage--toggle text-anim-up" data-text-duration="1.2"
-          data-text-delay="0.8" data-text-offset="20">
+        <div class="develop-page__stage develop-page__stage--3 develop-page__stage--toggle text-anim-up" data-text-duration="0.6"
+          data-text-delay="0.4" data-text-offset="20">
           <div class="develop-page__stage-abs">
             <div class="develop-page__stage-row">
               <div class="develop-page__stage-num">/3/</div>
@@ -243,8 +243,8 @@
           </div>
         </div>
 
-        <div class="develop-page__stage develop-page__stage--4 develop-page__stage--toggle text-anim-up" data-text-duration="1.2"
-          data-text-delay="0.8" data-text-offset="20">
+        <div class="develop-page__stage develop-page__stage--4 develop-page__stage--toggle text-anim-up" data-text-duration="0.6"
+          data-text-delay="0.4" data-text-offset="20">
           <div class="develop-page__stage-abs">
             <div class="develop-page__stage-row">
               <div class="develop-page__stage-num">/4/</div>
@@ -255,8 +255,8 @@
           </div>
         </div>
 
-        <div class="develop-page__stage develop-page__stage--5 develop-page__stage--toggle text-anim-up" data-text-duration="1.2"
-          data-text-delay="0.8" data-text-offset="20">
+        <div class="develop-page__stage develop-page__stage--5 develop-page__stage--toggle text-anim-up" data-text-duration="0.6"
+          data-text-delay="0.4" data-text-offset="20">
           <div class="develop-page__stage-abs">
             <div class="develop-page__stage-row">
               <div class="develop-page__stage-num">/5/</div>
@@ -267,8 +267,8 @@
           </div>
         </div>
 
-        <div class="develop-page__stage develop-page__stage--6 develop-page__stage--toggle text-anim-up" data-text-duration="1.2"
-          data-text-delay="0.8" data-text-offset="20">
+        <div class="develop-page__stage develop-page__stage--6 develop-page__stage--toggle text-anim-up" data-text-duration="0.6"
+          data-text-delay="0.4" data-text-offset="20">
           <div class="develop-page__stage-abs">
             <div class="develop-page__stage-row">
               <div class="develop-page__stage-num">/6/</div>
@@ -279,8 +279,8 @@
           </div>
         </div>
 
-        <div class="develop-page__stage develop-page__stage--7 develop-page__stage--toggle text-anim-up" data-text-duration="1.2"
-          data-text-delay="0.8" data-text-offset="20">
+        <div class="develop-page__stage develop-page__stage--7 develop-page__stage--toggle text-anim-up" data-text-duration="0.6"
+          data-text-delay="0.4" data-text-offset="20">
           <div class="develop-page__stage-abs">
             <div class="develop-page__stage-row">
               <div class="develop-page__stage-num">/7/</div>
@@ -291,8 +291,8 @@
           </div>
         </div>
 
-        <div class="develop-page__stage develop-page__stage--final develop-page__stage--toggle text-anim-up" data-text-duration="1.2"
-          data-text-delay="0.8" data-text-offset="20">
+        <div class="develop-page__stage develop-page__stage--final develop-page__stage--toggle text-anim-up" data-text-duration="0.6"
+          data-text-delay="0.4" data-text-offset="20">
           <div class="develop-page__stage-title">
             Запуск проекта
           </div>
