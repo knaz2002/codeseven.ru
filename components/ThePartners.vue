@@ -58,8 +58,14 @@ export default {
     }
 
     @media (max-width: 767px) {
-      grid-template-columns: 1fr;
-      max-width: 50%;
+      /*
+       * На мобильных устройствах партнёры располагаются
+       * по две карточки в строке. Четыре партнёра занимают
+       * два компактных ряда вместо одной высокой колонки.
+       */
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 92%;
+      gap: 1.5rem;
       justify-content: center;
       margin: 0 auto;
     }
@@ -80,7 +86,17 @@ export default {
       border-radius: var(--radius);
       overflow: hidden;
       @media (max-width: 767px) {
-        padding: 3rem;
+        /*
+         * На мобильных устройствах все плашки партнёров имеют
+         * одинаковую фиксированную высоту. Высота подобрана по
+         * компактной плашке Т-Банка, чтобы Zetta с PNG-логотипом
+         * больше не растягивала свою карточку.
+         */
+        height: 8.8rem !important;
+        min-height: 8.8rem !important;
+        max-height: 8.8rem !important;
+        box-sizing: border-box;
+        padding: 0 1.5rem;
       }
       &__item {
         box-shadow: none !important;
