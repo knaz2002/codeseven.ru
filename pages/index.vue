@@ -112,6 +112,18 @@ export default {
           url: "https://ya-buhgalter.osnova.capital/",
           desc: "Я Бухгалтер",
         },
+        {
+          id: "project-9",
+          img: "/img/portfolio/arbo-portfolio.webp",
+          url: "https://atributikatoys.ru/",
+          desc: "АРБО — талисманы, атрибуты и мерч",
+        },
+        {
+          id: "project-10",
+          img: "/img/portfolio/baano.webp",
+          url: "https://baano.ru/",
+          desc: "BAANO",
+        },
       ],
     };
   },
